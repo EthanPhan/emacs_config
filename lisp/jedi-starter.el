@@ -13,11 +13,11 @@
 
 (package-initialize)
 
-(defvar local-packages '(projectile auto-complete epc jedi py-autopep8 flycheck expand-region sphinx-doc))
+(defvar local-packages '(projectile auto-complete epc jedi py-autopep8 flycheck expand-region sphinx-doc magit))
 
 (defun uninstalled-packages (packages)
   (delq nil
-	(mapcar (lambda (p) (if (package-installed-p p nil) nil p)) packages)))
+        (mapcar (lambda (p) (if (package-installed-p p nil) nil p)) packages)))
 
 ;; This delightful bit adapted from:
 ;; http://batsov.com/articles/2012/02/19/package-management-in-emacs-the-good-the-bad-and-the-ugly/
@@ -27,7 +27,7 @@
     (progn
       (package-refresh-contents)
       (dolist (p need-to-install)
-	(package-install p)))))
+        (package-install p)))))
 
 ;; Global Jedi config vars
 
@@ -90,10 +90,10 @@ May be necessary for some GUI environments (e.g., Mac OS X)")
       "Just uses the vc-find-root function to figure out the project root.
        Won't always work for some directory layouts."
       (let* ((buf-dir (expand-file-name (file-name-directory (buffer-file-name buf))))
-	     (project-root (vc-find-root buf-dir repo-file)))
-	(if project-root
-	    (expand-file-name project-root)
-	  nil)))
+             (project-root (vc-find-root buf-dir repo-file)))
+        (if project-root
+            (expand-file-name project-root)
+          nil)))
 
     ;; Method 2: slightly more robust
     (defun get-project-root-with-file (buf repo-file &optional init-file)
@@ -214,9 +214,9 @@ May be necessary for some GUI environments (e.g., Mac OS X)")
 
     ;; enable hideshow mode for python
     (add-hook 'python-mode-hook (lambda()
-				  (local-set-key (kbd "C-c <right>") 'hs-show-block)
-				  (local-set-key (kbd "C-c <left>")  'hs-hide-block)
-				  (local-set-key (kbd "C-c <up>")    'hs-hide-all)
-				  (local-set-key (kbd "C-c <down>")  'hs-show-all)
-				  (hs-minor-mode t)))
+                                  (local-set-key (kbd "C-c <right>") 'hs-show-block)
+                                  (local-set-key (kbd "C-c <left>")  'hs-hide-block)
+                                  (local-set-key (kbd "C-c <up>")    'hs-hide-all)
+                                  (local-set-key (kbd "C-c <down>")  'hs-show-all)
+                                  (hs-minor-mode t)))
     ))
